@@ -38,20 +38,6 @@ class Network:
 							 bn=True, is_training=is_training,
 							 scope='conv2', bn_decay=bn_decay, activation_fn=None)
 
-#		net = tf_util.conv2d(net, 64, [1,1],
-#							 padding='VALID', stride=[1,1],
-#							 bn=True, is_training=is_training,
-#							 scope='conv3', bn_decay=bn_decay)
-#		net = tf_util.conv2d(net, 128, [1,1],
-#							 padding='VALID', stride=[1,1],
-#							 bn=True, is_training=is_training,
-#							 scope='conv4', bn_decay=bn_decay)
-
-#		net = tf_util.conv2d(net, 1024, [1,1],
-#							 padding='VALID', stride=[1,1],
-#							 bn=True, is_training=is_training,
-#							 scope='conv5', bn_decay=bn_decay)
-
 		# Symmetric function: max pooling
 		source_feature = tf_util.max_pool2d(net, [num_point, 1],
 								 padding='VALID', scope='maxpool')

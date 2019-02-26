@@ -138,23 +138,23 @@ def train():
 				# Find the predicted transformation.
 				predicted_pointclouds_pl = network.decode_data(source_global_feature, is_training_pl, bn_decay=bn_decay)
 				# Find the loss using source and transformed template point cloud.
-				# loss = network.get_loss_b(predicted_pointclouds_pl, source_pointclouds_pl)
+				loss = network.get_loss_b(predicted_pointclouds_pl, source_pointclouds_pl)
 
-			# # Get training optimization algorithm.
-			# if OPTIMIZER == 'momentum':
-			# 	optimizer = tf.train.MomentumOptimizer(learning_rate, momentum=MOMENTUM)
-			# elif OPTIMIZER == 'adam':
-			# 	optimizer = tf.train.AdamOptimizer(learning_rate)
+			# Get training optimization algorithm.
+			if OPTIMIZER == 'momentum':
+				optimizer = tf.train.MomentumOptimizer(learning_rate, momentum=MOMENTUM)
+			elif OPTIMIZER == 'adam':
+				optimizer = tf.train.AdamOptimizer(learning_rate)
 
-			# # Update Network_L.
-			# train_op = optimizer.minimize(loss, global_step=batch)
+			# Update Network_L.
+			train_op = optimizer.minimize(loss, global_step=batch)
 			
 		with tf.device('/cpu:0'):
 			# Add the loss in tensorboard.
 			tf.summary.scalar('learning_rate', learning_rate)
 			tf.summary.scalar('bn_decay', bn_decay)						# Write BN decay in summary.
 			saver = tf.train.Saver()
-			# tf.summary.scalar('loss', loss)
+			tf.summary.scalar('loss', loss)
 
 		# Create a session
 		config = tf.ConfigProto()
@@ -182,8 +182,8 @@ def train():
 		ops = {'source_pointclouds_pl': source_pointclouds_pl,
 			   'is_training_pl': is_training_pl,
 			   'predicted_pointclouds_pl': predicted_pointclouds_pl,
-			   # 'loss': loss,
-			   # 'train_op': train_op,
+			   'loss': loss,
+			   'train_op': train_op,
 			   'merged': merged,
 			   'step': batch}
 
@@ -336,13 +336,6 @@ def test_one_epoch(sess, ops, saver, model_path):
 	current_data = current_data[template_idx*BATCH_SIZE:(template_idx+1)*BATCH_SIZE]
 	print(current_data.shape)
 
-	# template_data = np.zeros((1,NUM_POINT,3))
-	# counter = 0
-	# for i in range(MAX_NUM_POINT):
-		# if current_data[0,i,0]<0 and counter<1024:
-			# template_data[0,counter,:] = current_data[0,i,:]
-			# counter += 1
-
 	template_data = current_data[:,0:NUM_POINT,:]
 	batch_euler_pose = np.array([[0,0,0,90*(np.pi/180), 0*(np.pi/180), 0*(np.pi/180)]])
 	# template_data = helper.apply_transformation(template_data, batch_euler_pose)
@@ -362,10 +355,9 @@ def test_one_epoch(sess, ops, saver, model_path):
 	start = time.time()
 	step, predicted_pointclouds_pl = sess.run([ ops['step'], ops['predicted_pointclouds_pl']], feed_dict=feed_dict)
 	end = time.time()
-	print(end-start)
+	print('Time Elapsed: {}'.format(end-start))
 	predicted_pointclouds_pl[0,:,0]=predicted_pointclouds_pl[0,:,0]+1
 	helper.display_two_clouds(template_data[0], predicted_pointclouds_pl[0])
-	# helper.display_clouds_data(predicted_pointclouds_pl[0])
 
 
 if __name__ == "__main__":

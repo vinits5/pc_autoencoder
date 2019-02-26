@@ -38,20 +38,6 @@ class Network:
 							 bn=True, is_training=is_training,
 							 scope='conv2', bn_decay=bn_decay, activation_fn=None)
 
-#		net = tf_util.conv2d(net, 64, [1,1],
-#							 padding='VALID', stride=[1,1],
-#							 bn=True, is_training=is_training,
-#							 scope='conv3', bn_decay=bn_decay)
-#		net = tf_util.conv2d(net, 128, [1,1],
-#							 padding='VALID', stride=[1,1],
-#							 bn=True, is_training=is_training,
-#							 scope='conv4', bn_decay=bn_decay)
-
-#		net = tf_util.conv2d(net, 1024, [1,1],
-#							 padding='VALID', stride=[1,1],
-#							 bn=True, is_training=is_training,
-#							 scope='conv5', bn_decay=bn_decay)
-
 		# Symmetric function: max pooling
 		source_feature = tf_util.max_pool2d(net, [num_point, 1],
 								 padding='VALID', scope='maxpool')
@@ -82,10 +68,6 @@ class Network:
 		return predicted_pointclouds_pl
 
 	def get_loss_b(self, predicted_pointclouds_pl, source_pointclouds_pl):
-		# def get_loss_b(self, predicted_pointclouds_pl, source_pointclouds_pl):
-		# with tf.variable_scope('loss') as LossEvaluation:
-			# loss = tf.reduce_mean(tf.square(tf.subtract(predicted_pointclouds_pl, source_pointclouds_pl)))
-			# loss = tf_util_loss.chamfer(predicted_pointclouds_pl, source_pointclouds_pl)
 		loss = 0
 		return loss
 
