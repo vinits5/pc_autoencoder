@@ -32,11 +32,11 @@ idx: Index of Point Cloud in ModelNet40 Dataset.
 #### Additional Results:
 
 <p align="center">
-	<img src="https://github.com/vinits5/pc_autoencoder/blob/master/results/result2.png">
-	<img src="https://github.com/vinits5/pc_autoencoder/blob/master/results/result3.png">
-	<img src="https://github.com/vinits5/pc_autoencoder/blob/master/results/result4.png">
+	<img src="https://github.com/vinits5/pc_autoencoder/blob/master/results/result2.png" style="border: 1px">
+	<img src="https://github.com/vinits5/pc_autoencoder/blob/master/results/result3.png" style="border: 1px">
+	<img src="https://github.com/vinits5/pc_autoencoder/blob/master/results/result4.png" style="border: 1px">
 </p>
 
 ### References:
-1. PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation [Link](https://arxiv.org/abs/1612.00593)
+1. PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation [[Link]](https://arxiv.org/abs/1612.00593)
 2. PCN: Point Completion Network [[Link]](https://arxiv.org/abs/1808.00671)
