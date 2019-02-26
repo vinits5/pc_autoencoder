@@ -32,9 +32,9 @@ idx: Index of Point Cloud in ModelNet40 Dataset.
 #### Additional Results:
 
 <p align="center">
-	<img src="https://github.com/vinits5/pc_autoencoder/blob/master/results/result2.png" style="border: 1px">
-	<img src="https://github.com/vinits5/pc_autoencoder/blob/master/results/result3.png" style="border: 1px">
-	<img src="https://github.com/vinits5/pc_autoencoder/blob/master/results/result4.png" style="border: 1px">
+	<img src="https://github.com/vinits5/pc_autoencoder/blob/master/results/result2.png">
+	<img src="https://github.com/vinits5/pc_autoencoder/blob/master/results/result3.png">
+	<img src="https://github.com/vinits5/pc_autoencoder/blob/master/results/result4.png">
 </p>
 
 ### References:
